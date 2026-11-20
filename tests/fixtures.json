@@ -1,0 +1,24 @@
+{
+  "settings": { "country": "United Kingdom", "moods": "Chill" },
+  "track": { "title": "Espresso", "artist": "Sabrina Carpenter" },
+  "http": [
+    { "match": "itunes.apple.com/search", "body": "{\"results\":[{\"artistId\":390647681,\"artistName\":\"Sabrina Carpenter\"}]}" },
+    { "match": "entity=album", "body": "{\"results\":[{\"wrapperType\":\"artist\"},{\"wrapperType\":\"collection\",\"collectionId\":111,\"collectionName\":\"Brand New - Single\",\"artistName\":\"Sabrina Carpenter\",\"artworkUrl100\":\"https://is1-ssl.mzstatic.com/a/100x100bb.jpg\",\"releaseDate\":\"2099-01-01T00:00:00Z\"},{\"wrapperType\":\"collection\",\"collectionId\":222,\"collectionName\":\"Old Album\",\"artistName\":\"Sabrina Carpenter\",\"releaseDate\":\"2010-01-01T00:00:00Z\"}]}" },
+    { "match": "entity=song", "body": "{\"results\":[]}" },
+    { "match": "most-played/25/songs", "body": "{\"feed\":{\"results\":[{\"id\":\"555\",\"name\":\"Chart Song\",\"artistName\":\"Someone\",\"artworkUrl100\":\"https://is1-ssl.mzstatic.com/x/100x100bb.jpg\"}]}}" },
+    { "match": "most-played/25/albums", "status": 500 },
+    { "match": "search/artist", "body": "{\"data\":[{\"id\":1176900,\"name\":\"Sabrina Carpenter\"}]}" },
+    { "match": "/radio", "body": "{\"data\":[{\"id\":9,\"title\":\"Radio Song\",\"readable\":false,\"artist\":{\"name\":\"Other\"},\"album\":{\"cover_medium\":\"https://cdn-images.dzcdn.net/c.jpg\"}}]}" },
+    { "match": "search/playlist", "body": "{\"data\":[{\"id\":7,\"title\":\"Chill Hits\",\"nb_tracks\":50,\"user\":{\"name\":\"Deezer Editor\"}},{\"id\":8,\"title\":\"Tiny\",\"nb_tracks\":3}]}" }
+  ],
+  "steps": [
+    { "event": "track" },
+    { "event": "online" },
+    { "hook": "home", "expect": { "contains": "Popular in United Kingdom" } },
+    { "hook": "home", "expect": { "contains": "itunes:track:555" } },
+    { "hook": "home", "expect": { "contains": "Because you played Sabrina Carpenter" } },
+    { "hook": "home", "expect": { "contains": "deezer:track:9" } },
+    { "hook": "home", "expect": { "contains": "deezer:playlist:7" } },
+    { "hook": "status", "expect": { "outcome": "live" } }
+  ]
+}

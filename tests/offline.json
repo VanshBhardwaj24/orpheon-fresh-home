@@ -1,0 +1,14 @@
+{
+  "offline": true,
+  "track": { "title": "Espresso", "artist": "Sabrina Carpenter" },
+  "steps": [
+    { "hook": "status", "expect": { "outcome": "live" } },
+    { "event": "track" },
+    { "event": "online", "expect": { "maxMs": 30000 } },
+    { "hook": "home", "expect": { "contains": "Loading charts", "maxMs": 3000 } },
+    { "hook": "home", "expect": { "contains": "Looking for new releases" } },
+    { "hook": "tap", "action": "refresh" },
+    { "storage": { "force": true } },
+    { "hook": "status", "expect": { "outcome": "inactive" } }
+  ]
+}

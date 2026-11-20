@@ -1,0 +1,38 @@
+{
+  "id": "io.github.vanshbhardwaj24.freshhome",
+  "name": "Fresh Home",
+  "version": "1.0.0",
+  "versionCode": 1,
+  "author": "Vansh Bhardwaj",
+  "description": "Fills Home: new releases from the artists you play, a radio from the last artist you played, the top songs and albums of your country, and mood and genre playlists. Play counts stay on this phone; the catalogues are only asked by artist name.",
+  "homepage": "https://github.com/VanshBhardwaj24/orpheon-fresh-home",
+  "category": "discovery",
+  "tags": ["home", "new releases", "charts", "radio", "discovery", "moods"],
+  "changelog": "First version: new releases, Because you played radio, country charts, moods and genres.",
+  "actions": [
+    { "name": "home.sections", "why": "Shows new releases, a radio, charts and moods at the end of Home" },
+    { "name": "playback.events", "why": "Counts which artists you play, to find their new releases" },
+    { "name": "storage", "why": "Keeps those counts and the shelves on this phone" },
+    { "name": "settings.page", "why": "Your country, moods, artists to follow and which shelves to show" },
+    { "name": "network", "hosts": ["itunes.apple.com", "rss.marketingtools.apple.com", "api.deezer.com"], "why": "Asks Apple and Deezer for releases, charts, radios and playlists" }
+  ],
+  "media": { "hosts": ["*.mzstatic.com", "*.dzcdn.net"] },
+  "settings": [
+    { "key": "country", "type": "choice", "label": "Country", "description": "Whose charts and store to use. Auto follows the app's language, else the United States.",
+      "options": ["Auto", "Argentina", "Australia", "Austria", "Belgium", "Brazil", "Canada", "Chile", "Colombia", "Denmark", "Egypt", "Finland", "France", "Germany", "Greece", "Hong Kong", "India", "Indonesia", "Ireland", "Israel", "Italy", "Japan", "Kenya", "Malaysia", "Mexico", "Netherlands", "New Zealand", "Nigeria", "Norway", "Pakistan", "Peru", "Philippines", "Poland", "Portugal", "Saudi Arabia", "Singapore", "South Africa", "South Korea", "Spain", "Sweden", "Switzerland", "Taiwan", "Thailand", "Turkey", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Vietnam"],
+      "default": "Auto" },
+    { "key": "follow", "type": "text", "label": "Artists to follow", "description": "Comma-separated. Their new releases show even before you play them.", "default": "" },
+    { "key": "moods", "type": "text", "label": "Moods and genres", "description": "Comma-separated, up to 6.", "default": "Chill, Workout, Focus, Party" },
+    { "key": "window", "type": "choice", "label": "New means released in the last", "options": ["14 days", "30 days", "60 days", "90 days"], "default": "30 days" },
+    { "key": "showNew", "type": "toggle", "label": "New releases", "default": true },
+    { "key": "showRadio", "type": "toggle", "label": "Because you played", "default": true },
+    { "key": "showCharts", "type": "toggle", "label": "Top in your country", "default": true },
+    { "key": "showMoods", "type": "toggle", "label": "Moods and genres", "default": true },
+    { "key": "refresh", "type": "button", "label": "Refresh now", "description": "Asks the catalogues again (it also happens by itself every 6 hours)." },
+    { "key": "forget", "type": "button", "label": "Forget my artists", "description": "Clears the play counts kept on this phone." }
+  ],
+  "welcome": {
+    "message": "Fresh Home adds two sections at the end of Home: what's new from your artists, and what's popular where you are.",
+    "steps": ["Play a few songs: the artists you play are counted on this phone.", "Optional: pick your country and add artists to follow in this extension's settings."]
+  }
+}

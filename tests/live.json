@@ -1,0 +1,12 @@
+{
+  "settings": { "country": "India" },
+  "track": { "title": "Espresso", "artist": "Sabrina Carpenter" },
+  "steps": [
+    { "event": "track" },
+    { "hook": "home", "expect": { "contains": "Looking for new releases" } },
+    { "event": "online" },
+    { "hook": "home", "expect": { "contains": "Popular in India", "maxMs": 3000 } },
+    { "hook": "home", "expect": { "contains": "Because you played Sabrina Carpenter" } },
+    { "hook": "status", "expect": { "outcome": "live" } }
+  ]
+}

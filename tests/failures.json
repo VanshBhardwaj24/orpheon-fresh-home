@@ -1,0 +1,29 @@
+{
+  "offline": true,
+  "settings": { "country": "United Kingdom", "moods": "Chill" },
+  "track": { "title": "Espresso", "artist": "Sabrina Carpenter" },
+  "http": [
+    { "match": "itunes.apple.com/search", "body": "{\"results\":[{\"artistId\":390647681,\"artistName\":\"Sabrina Carpenter\"}]}" },
+    { "match": "itunes.apple.com/lookup", "body": "{\"results\":[]}" },
+    { "match": "most-played/25/songs", "body": "{\"feed\":{\"results\":[{\"id\":\"555\",\"name\":\"Chart Song\",\"artistName\":\"Someone\",\"artworkUrl100\":\"https://tracker.example.net/x/100x100bb.jpg\"}]}}" },
+    { "match": "most-played/25/albums", "body": "{\"feed\":{\"results\":[]}}" },
+    { "match": "search/artist", "body": "{\"error\":{\"type\":\"Exception\",\"message\":\"Quota limit exceeded\",\"code\":4}}" },
+    { "match": "search/playlist", "body": "{\"data\":[{\"id\":7,\"title\":\"Chill Hits\",\"nb_tracks\":50,\"picture_medium\":\"https://evil.example.net/p.jpg\",\"user\":{\"name\":\"Deezer Editor\"}}]}" }
+  ],
+  "steps": [
+    { "event": "track" },
+    { "event": "online" },
+    { "storage": { "deezerIds": null } },
+    { "hook": "home", "expect": { "contains": "deezer:playlist:7", "maxMs": 3000 } },
+    { "hook": "home", "expect": { "contains": "itunes:track:555" } },
+    { "hook": "status", "expect": { "outcome": "live" } },
+
+    { "http": [ { "match": "*", "latencyMs": 9000 } ] },
+    { "event": "setting", "input": { "key": "refresh", "pressed": true } },
+    { "event": "online", "expect": { "maxMs": 30000 } },
+    { "hook": "home", "expect": { "contains": "deezer:playlist:7" } },
+
+    { "event": "setting", "input": { "key": "forget", "pressed": true } },
+    { "storage": { "artists": {}, "itunesIds": {}, "deezerIds": {} } }
+  ]
+}
