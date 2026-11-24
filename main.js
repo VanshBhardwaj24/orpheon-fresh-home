@@ -397,6 +397,22 @@ function items(xs, now, withWhen) {
   });
 }
 
+// One quiet line at a time, never a pop-up: after 7 days a request for a 👍 on the Ratings issue,
+// and only once that is hidden, after 30 days one line about the Ko-fi page. Both stay until hidden.
+function askBlocks(now) {
+  var since = get('since', now);
+  var age = (now - since) / DAY;
+  if (age >= 7 && !get('hideRate', false)) {
+    return [{ type: 'text', style: 'caption', text: 'Like Fresh Home? A 👍 on the Ratings issue at github.com/VanshBhardwaj24/orpheon-fresh-home helps other people find it.' },
+      { type: 'button', label: 'Hide this', icon: 'close', action: 'hideRate' }];
+  }
+  if (age >= 30 && get('hideRate', false) && !get('hideDonate', false)) {
+    return [{ type: 'text', style: 'caption', text: 'Enjoying Fresh Home for a month? A coffee keeps updates coming: ko-fi.com/vanshmusic' },
+      { type: 'button', label: 'Hide this', icon: 'close', action: 'hideDonate' }];
+  }
+  return [];
+}
+
 function home() {
   var cache = get('cache', {});
   var now = Date.now();
@@ -444,6 +460,11 @@ function home() {
       { type: 'text', style: 'caption', text: 'Loading charts and playlists. They show here once the phone is online.' }
     ] });
   }
+  var ask = askBlocks(now);
+  if (ask.length) {
+    if (sections.length) sections[0].blocks = sections[0].blocks.concat(ask).slice(0, 12);
+    else sections.push({ type: 'section', title: 'Fresh Home', blocks: ask });
+  }
   return sections.slice(0, 2);
 }
 
@@ -453,6 +474,8 @@ myspoti.provide('home', function () { return home(); });
 
 myspoti.provide('tap', function (e) {
   if (e.action === 'refresh') askRefresh(true);
+  if (e.action === 'hideRate') { set('hideRate', true); myspoti.ui.refresh('home'); }
+  if (e.action === 'hideDonate') { set('hideDonate', true); myspoti.ui.refresh('home'); }
 });
 
 myspoti.on('track', function (track) {
@@ -464,6 +487,7 @@ myspoti.on('online', function () { refresh(); });
 
 myspoti.on('setting', function (e) {
   if (e.key === 'refresh' && e.pressed) return askRefresh(true);
+  if (e.key === 'support') return;
   if (e.key === 'forget' && e.pressed) {
     set('artists', {}); set('last', null); set('itunesIds', {}); set('deezerIds', {});
     var cache = get('cache', {}); delete cache.releases; delete cache.radio; set('cache', cache);
@@ -487,4 +511,5 @@ myspoti.provide('status', function () {
     (run.errors && run.errors.length ? ' · ' + cut(run.errors.join('; '), 120) : '') };
 });
 
+if (get('since', 0) === 0) set('since', Date.now());
 if (needsRefresh()) myspoti.work.whenOnline();

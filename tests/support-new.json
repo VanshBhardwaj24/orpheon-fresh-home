@@ -1,0 +1,8 @@
+{
+  "offline": true,
+  "track": { "title": "Espresso", "artist": "Sabrina Carpenter" },
+  "steps": [
+    { "hook": "home", "expect": { "contains": "Play a few songs" } },
+    { "storage": { "hideRate": null, "hideDonate": null } }
+  ]
+}

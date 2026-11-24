@@ -1,0 +1,13 @@
+{
+  "offline": true,
+  "track": { "title": "Espresso", "artist": "Sabrina Carpenter" },
+  "steps": [
+    { "hook": "home", "expect": { "contains": "Ratings issue" } },
+    { "hook": "tap", "action": "hideRate" },
+    { "storage": { "hideRate": true } },
+    { "hook": "home", "expect": { "contains": "ko-fi.com/vanshmusic" } },
+    { "hook": "tap", "action": "hideDonate" },
+    { "storage": { "hideDonate": true } },
+    { "hook": "home", "expect": { "contains": "Refresh" } }
+  ]
+}

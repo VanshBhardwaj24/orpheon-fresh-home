@@ -1,14 +1,14 @@
 {
   "id": "io.github.vanshbhardwaj24.freshhome",
   "name": "Fresh Home",
-  "version": "1.0.0",
-  "versionCode": 1,
+  "version": "1.1.0",
+  "versionCode": 2,
   "author": "Vansh Bhardwaj",
   "description": "Fills Home: new releases from the artists you play, a radio from the last artist you played, the top songs and albums of your country, and mood and genre playlists. Play counts stay on this phone; the catalogues are only asked by artist name.",
   "homepage": "https://github.com/VanshBhardwaj24/orpheon-fresh-home",
   "category": "discovery",
   "tags": ["home", "new releases", "charts", "radio", "discovery", "moods"],
-  "changelog": "First version: new releases, Because you played radio, country charts, moods and genres.",
+  "changelog": "A support link: a line in the settings page, and after a month one hideable line on Home about the Ko-fi page. Nothing else changed.",
   "actions": [
     { "name": "home.sections", "why": "Shows new releases, a radio, charts and moods at the end of Home" },
     { "name": "playback.events", "why": "Counts which artists you play, to find their new releases" },
@@ -29,6 +29,7 @@
     { "key": "showCharts", "type": "toggle", "label": "Top in your country", "default": true },
     { "key": "showMoods", "type": "toggle", "label": "Moods and genres", "default": true },
     { "key": "refresh", "type": "button", "label": "Refresh now", "description": "Asks the catalogues again (it also happens by itself every 6 hours)." },
+    { "key": "support", "type": "button", "label": "Support Fresh Home", "description": "Free and open source. If it helps you, a coffee keeps updates coming: ko-fi.com/vanshmusic" },
     { "key": "forget", "type": "button", "label": "Forget my artists", "description": "Clears the play counts kept on this phone." }
   ],
   "welcome": {
