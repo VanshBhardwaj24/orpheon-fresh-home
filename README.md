@@ -1,5 +1,7 @@
 # Fresh Home
 
+Free and open source. If it helps you: ☕ [ko-fi.com/vanshmusic](https://ko-fi.com/vanshmusic) · 👍 the [Ratings issue](https://github.com/VanshBhardwaj24/orpheon-fresh-home/issues/1)
+
 An [Orpheon](https://github.com/kota-zo/orpheon) extension that fills Home again. It adds two
 sections at the end of Home:
 
@@ -63,3 +65,7 @@ myspoti-ext test . --scenario tests/live.json       # the real catalogues
 ## License
 
 MIT, see `LICENSE`.
+
+## Support
+
+Fresh Home is free and nothing is locked. Donations pay for time on new versions and translations: [ko-fi.com/vanshmusic](https://ko-fi.com/vanshmusic). A 👍 on the [Ratings issue](https://github.com/VanshBhardwaj24/orpheon-fresh-home/issues/1) helps just as much. In the app there is one line in the settings page and, after a month of use, one line on Home that you can hide. No pop-ups, no tracking.
